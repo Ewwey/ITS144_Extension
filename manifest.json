@@ -1,0 +1,30 @@
+
+{
+  "manifest_version": 3,
+  "name": "Media Diet Filter",
+  "version": "0.1",
+  "description": "Analyze and filter aggravating content on Facebook and Twitter.",
+  "permissions": ["storage", "scripting", "activeTab"],
+  "host_permissions": ["*://*.facebook.com/*", "*://*.twitter.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.facebook.com/*"],
+      "js": ["content_scripts/facebook.js"]
+    },
+    {
+      "matches": ["*://*.twitter.com/*"],
+      "js": ["content_scripts/twitter.js"]
+    }
+  ]
+}
